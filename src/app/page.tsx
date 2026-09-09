@@ -1,12 +1,17 @@
+"use client";
+
 import Button from "@/components/atoms/Button";
-import { cn } from "@/utils/helper";
 
 export default function Home() {
-  console.log(cn("Ok"))
+  const handleEvent = () => {
+    console.log("Button Click");
+  };
 
   return (
     <div>
-      <Button>Hello</Button>
+      <Button variant="secondary" onClick={handleEvent}>
+        Hello
+      </Button>
     </div>
   );
 }

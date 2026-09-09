@@ -1,13 +1,30 @@
 "use client";
 
-import { ReactNode } from "react";
+import { cn } from "@/utils/helper";
+import React, { ReactNode } from "react";
 
 interface IButtonProps {
   children: ReactNode;
+  className?: string;
+  variant: "primary" | "secondary";
+  onClick?: <T>(e?: React.MouseEvent<T>) => void;
 }
 
-function Button({ children }: IButtonProps) {
-  return <button className="py-3.5">{children}</button>;
+const variants = {
+  primary: "py-3.5 bg-black rounded-full w-full text-white",
+  secondary:
+    "py-3.5 bg-white rounded-full w-full text-black border border-gray-200",
+};
+
+function Button({ children, className, variant, onClick }: IButtonProps) {
+  return (
+    <button
+      className={cn(variants[variant], "cursor-pointer", className)}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
 }
 
 export default Button;

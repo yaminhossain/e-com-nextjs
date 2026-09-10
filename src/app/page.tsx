@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/atoms/Button";
+import Button from "@/components/atoms/button";
 
 export default function Home() {
   const handleEvent = () => {
@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <div>
-      <Button variant="secondary" onClick={handleEvent}>
+      <Button variant="primary" onClick={handleEvent}>
         Hello
       </Button>
     </div>

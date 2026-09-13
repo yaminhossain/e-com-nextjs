@@ -1,2 +1,12 @@
 @import "tailwindcss";
 
+:root {
+  --product-img-bg: #f0eeed;
+}
+.dark {
+  --product-img-bg: #333538;
+}
+
+@theme {
+  --color-product-img: var(--product-img-bg);
+}

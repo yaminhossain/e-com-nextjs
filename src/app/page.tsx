@@ -3,13 +3,13 @@
 import Button from "@/components/atoms/button";
 
 export default function Home() {
-  const handleEvent = () => {
-    console.log("Button Click");
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement></HTMLButtonElement>) => {
+    console.log(e)
   };
 
   return (
     <div>
-      <Button variant="primary" onClick={handleEvent}>
+      <Button variant="primary" onClick={handleClick}>
         Hello
       </Button>
     </div>

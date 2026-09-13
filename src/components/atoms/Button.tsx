@@ -7,7 +7,7 @@ interface IButtonProps {
   children: ReactNode;
   className?: string;
   variant: "primary" | "secondary";
-  onClick?: <T>(e?: React.MouseEvent<T>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const variants = {

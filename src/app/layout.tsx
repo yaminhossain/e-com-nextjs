@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const satoshiLight = localFont({
-  src: "../../public/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Light.woff",
+  src: "../../public/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff2",
 });
 
 export const metadata: Metadata = {

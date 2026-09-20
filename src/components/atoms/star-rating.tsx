@@ -1,0 +1,21 @@
+function StarRating() {
+  return (
+    <div>
+      <svg
+        width="22"
+        height="21"
+        viewBox="0 0 22 21"
+        fill="#ffffff" // default: A child element can override it
+        xmlns="http://www.w3.org/2000/svg"
+        className="border border-amber-800"
+      >
+        <path
+          d="M10.7369 0L13.9354 6.8872L21.4739 7.80085L15.9121 12.971L17.3727 20.4229L10.7369 16.731L4.10114 20.4229L5.56173 12.971L-3.8147e-06 7.80085L7.53849 6.8872L10.7369 0Z"
+          fill="#FFC633"
+        />
+      </svg>
+    </div>
+  );
+}
+
+export default StarRating;

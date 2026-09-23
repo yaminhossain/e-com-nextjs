@@ -2,11 +2,17 @@
 
 :root {
   --product-img-bg: #f0eeed;
+  --error: #ff3333;
+  --success: #01ab31;
 }
 .dark {
   --product-img-bg: #333538;
+  --error: #ff3333;
+  --success: #01ab31;
 }
 
 @theme {
   --color-product-img: var(--product-img-bg);
+  --color-error: var(--error);
+  --color-success: var(--success);
 }

@@ -1,11 +1,12 @@
-import StarRating from "@/components/molecules/star-rating";
+import React from "react";
+import styles from "./homepage.module.css";
 
-export default function Home() {
+function Home() {
   return (
-    <div >
-      {/* Star Rating */}
-      <p className="text-white my-3">Star Rating</p>
-      <StarRating rating={4.5} />
+    <div className="h-screen bg-amber-300 ">
+      <div className={`size-50 bg-red-300 ${styles.box1}`}></div>
     </div>
   );
 }
+
+export default Home;

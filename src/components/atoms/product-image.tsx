@@ -4,12 +4,12 @@ import React from "react";
 
 interface IProductImageProps {
   className?: string;
-  src?: string;
+  src: string;
 }
 
 function ProductImage({
   className,
-  src = "/images/dummy-product-image.png",
+  src,
 }: IProductImageProps) {
   return (
     <div

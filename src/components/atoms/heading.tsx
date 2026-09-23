@@ -31,7 +31,7 @@ function Heading({ variant, children, className = "" }: IHeadingProps) {
       break;
 
     case "heading-sm":
-      headingClass = "text-4xl font-bold";
+      headingClass = "text-[36] font-bold";
       break;
 
     case "heading-md":

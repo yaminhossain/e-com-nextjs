@@ -36,12 +36,12 @@ interface IStarProps {
 function Star({ isHalf }: IStarProps) {
   return (
     <SVG
-      width={isHalf ? "11" : "22"}
-      height="21"
+      width={isHalf ? "9" : "18"}
+      height="18"
       viewBoxX="0"
       viewBoxY="0"
       viewBoxWidth={isHalf ? "11" : "22"}
-      viewBoxHeight="21"
+      viewBoxHeight="22"
     >
       <path
         d="M10.7369 0L13.9354 6.8872L21.4739 7.80085L15.9121 12.971L17.3727 20.4229L10.7369 16.731L4.10114 20.4229L5.56173 12.971L-3.8147e-06 7.80085L7.53849 6.8872L10.7369 0Z"
@@ -54,12 +54,12 @@ function Star({ isHalf }: IStarProps) {
 function UnratedStar() {
   return (
     <SVG
-      width="22"
-      height="21"
+      width={"18"}
+      height="18"
       viewBoxX="0"
       viewBoxY="0"
-      viewBoxWidth="22"
-      viewBoxHeight="21"
+      viewBoxWidth={"22"}
+      viewBoxHeight="22"
     >
       <path
         d="M10.7369 0L13.9354 6.8872L21.4739 7.80085L15.9121 12.971L17.3727 20.4229L10.7369 16.731L4.10114 20.4229L5.56173 12.971L-3.8147e-06 7.80085L7.53849 6.8872L10.7369 0Z"

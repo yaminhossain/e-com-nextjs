@@ -1,0 +1,5 @@
+.box1 {
+  transform: translateX(100px);
+  transform: rotate(36deg);
+  transition: all 10s ease-in;
+}

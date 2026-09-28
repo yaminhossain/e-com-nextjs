@@ -1,0 +1,594 @@
+@import "tailwindcss";
+
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mobile-specific performance */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #webchat {
+    display: none !important;
+  }
+
+  /* Reduce animations on mobile */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Custom breakpoint: `xs` for screens below 375px (max-width: 374px) */
+.card-fixed-343 {
+  min-width: 348px;
+  max-width: 348px;
+  left: 16px;
+}
+
+/* Override for very small screens: make card-fixed width 320px under 350px */
+@media (max-width: 350px) {
+  .card-fixed-343 {
+    min-width: 300px;
+    max-width: 300px;
+    left: 8px;
+  }
+}
+
+/* Optimize scrolling performance */
+body {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Global container utility */
+/* .container {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+} */
+
+@layer utilities {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 1440px) {
+    .container {
+      max-width: 1440px;
+      /* padding-left: 32px !important;
+      padding-right: 32px !important; */
+    }
+  }
+}
+
+:root {
+  --BaseWhite: #ffffff;
+
+  /* Brand */
+  --Brand800: #0a4d4b;
+  --Brand700: #0c605e;
+  --Brand600Base: #0e7673;
+  --Brand500: #149c98;
+  --Brand400: #34b6b2;
+  --Brand300: #68d1cd;
+  --Brand200: #a6e5e3;
+  --Brand100: #d6f5f4;
+  --Brand50: #eafbfa;
+  --Brand25: #f5fdfc;
+
+  /* Success */
+  --Success800: #085d3a;
+  --Success700: #067647;
+  --Success600Base: #079455;
+  --Success500: #17b26a;
+  --Success400: #47cd89;
+  --Success300: #75e0a7;
+  --Success200: #abefc6;
+  --Success100: #dcfae6;
+  --Success50: #ecfdf3;
+  --Success25: #f6fef9;
+
+  /* Warning */
+  --Warning800: #93370d;
+  --Warning700: #b54708;
+  --Warning600Base: #dc6803;
+  --Warning500: #f79009;
+  --Warning400: #fdb022;
+  --Warning300: #fec84b;
+  --Warning200: #fedf89;
+  --Warning100: #fef0c7;
+  --Warning50: #fffaeb;
+  --Warning25: #fffcf5;
+
+  /* Error */
+  --Error800: #912018;
+  --Error700: #b42318;
+  --Error600Base: #d92d20;
+  --Error500: #f04438;
+  --Error400: #f97066;
+  --Error300: #fda29b;
+  --Error200: #fecdca;
+  --Error100: #fee4e2;
+  --Error50: #fef3f2;
+  --Error25: #fffbfa;
+
+  /* Greyscale */
+  --Gray800: #252b37;
+  --Gray700: #414651;
+  --Gray600Base: #535862;
+  --Gray500: #717680;
+  --Gray400: #a4a7ae;
+  --Gray300: #d5d7da;
+  --Gray200: #e9eaeb;
+  --Gray100: #f5f5f5;
+  --Gray50: #fafafa;
+  --Gray25: #fdfdfd;
+
+  /* Info */
+  --Info800: #0040c1;
+  --Info700: #004eeb;
+  --Info600Base: #155eef;
+  --Info500: #2970ff;
+  --Info400: #528bff;
+  --Info300: #84adff;
+  --Info200: #b2ccff;
+  --Info100: #d1e0ff;
+  --Info50: #eff4ff;
+  --Info25: #f5f8ff;
+
+  /* Doctor */
+  --ServiceDoctor800: #1849a9;
+  --ServiceDoctor700: #175cd3;
+  --ServiceDoctor600Base: #1570ef;
+  --ServiceDoctor500: #2e90fa;
+  --ServiceDoctor400: #53b1fd;
+  --ServiceDoctor300: #84caff;
+  --ServiceDoctor200: #b2ddff;
+  --ServiceDoctor100: #d1e9ff;
+  --ServiceDoctor50: #eff8ff;
+  --ServiceDoctor25: #f5faff;
+
+  /* Others */
+  --Teal: #a7ffeb;
+  --Amber: #ffe57f;
+}
+
+@theme {
+  --color-white: var(--BaseWhite);
+
+  /* brand */
+  --color-brand: var(--Brand600Base);
+  --color-brand-800: var(--Brand800);
+  --color-brand-700: var(--Brand700);
+  --color-brand-500: var(--Brand500);
+  --color-brand-400: var(--Brand400);
+  --color-brand-300: var(--Brand300);
+  --color-brand-200: var(--Brand200);
+  --color-brand-100: var(--Brand100);
+  --color-brand-50: var(--Brand50);
+  --color-brand-25: var(--Brand25);
+
+  /* Success */
+  --color-success: var(--Success600Base);
+  --color-success-800: var(--Success800);
+  --color-success-700: var(--Success700);
+  --color-success-500: var(--Success500);
+  --color-success-400: var(--Success400);
+  --color-success-300: var(--Success300);
+  --color-success-200: var(--Success200);
+  --color-success-100: var(--Success100);
+  --color-success-50: var(--Success50);
+  --color-success-25: var(--Success25);
+
+  /* Warning */
+  --color-warning: var(--Warning600Base);
+  --color-warning-800: var(--Warning800);
+  --color-warning-700: var(--Warning700);
+  --color-warning-500: var(--Warning500);
+  --color-warning-400: var(--Warning400);
+  --color-warning-300: var(--Warning300);
+  --color-warning-200: var(--Warning200);
+  --color-warning-100: var(--Warning100);
+  --color-warning-50: var(--Warning50);
+  --color-warning-25: var(--Warning25);
+
+  /* Error */
+  --color-error: var(--Error600Base);
+  --color-error-800: var(--Error800);
+  --color-error-700: var(--Error700);
+  --color-error-600: var(--Error600Base);
+  --color-error-500: var(--Error500);
+  --color-error-400: var(--Error400);
+  --color-error-300: var(--Error300);
+  --color-error-200: var(--Error200);
+  --color-error-100: var(--Error100);
+  --color-error-50: var(--Error50);
+  --color-error-25: var(--Error25);
+
+  /* Info */
+  --color-info: var(--Info600Base);
+  --color-info-800: var(--Info800);
+  --color-info-700: var(--Info700);
+  --color-info-500: var(--Info500);
+  --color-info-400: var(--Info400);
+  --color-info-300: var(--Info300);
+  --color-info-200: var(--Info200);
+  --color-info-100: var(--Info100);
+  --color-info-50: var(--Info50);
+  --color-info-25: var(--Info25);
+
+  /* Doctor */
+  --color-service-doctor: var(--ServiceDoctor600Base);
+  --color-service-doctor-800: var(--ServiceDoctor800);
+  --color-service-doctor-700: var(--ServiceDoctor700);
+  --color-service-doctor-500: var(--ServiceDoctor500);
+  --color-service-doctor-400: var(--ServiceDoctor400);
+  --color-service-doctor-300: var(--ServiceDoctor300);
+  --color-service-doctor-200: var(--ServiceDoctor200);
+  --color-service-doctor-100: var(--ServiceDoctor100);
+  --color-service-doctor-50: var(--ServiceDoctor50);
+  --color-service-doctor-25: var(--ServiceDoctor25);
+
+  /* Greyscale */
+  --color-gray: var(--Gray600Base);
+
+  --color-gray-800: var(--Gray800);
+  --color-gray-700: var(--Gray700);
+  --color-gray-500: var(--Gray500);
+  --color-gray-400: var(--Gray400);
+  --color-gray-300: var(--Gray300);
+  --color-gray-200: var(--Gray200);
+  --color-gray-100: var(--Gray100);
+  --color-gray-50: var(--Gray50);
+  --color-gray-25: var(--Gray25);
+
+  --shadow: 2px 2px 8px 0 rgb(0 0 0 / 0.04);
+}
+
+@layer utilities {
+  .shadow-xs {
+    box-shadow: 0 1px 2px 0 rgba(37, 43, 55, 0.05);
+  }
+  .shadow-md {
+    box-shadow:
+      0 4px 6px -1px rgba(37, 43, 55, 0.1),
+      0 2px 4px -2px rgba(37, 43, 55, 0.06);
+  }
+  .shadow-lg {
+    box-shadow:
+      0 12px 16px -4px rgba(37, 43, 55, 0.08),
+      0 4px 6px -2px rgba(37, 43, 55, 0.03),
+      0 2px 2px -1px rgba(37, 43, 55, 0.04);
+  }
+  .shadow-xl {
+    box-shadow:
+      0 20px 24px -4px rgba(37, 43, 55, 0.08),
+      0 8px 8px -4px rgba(37, 43, 55, 0.03),
+      0 3px 3px -1.5px rgba(37, 43, 55, 0.04);
+  }
+}
+
+/* ========================
+	   SCROLLBAR STYLES
+	======================== */
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply bg-gray-200 rounded-lg;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-brand rounded-lg;
+  }
+}
+
+@utility custom-scrollbar {
+  /* ================= FIREFOX ================= */
+  scrollbar-width: thin;
+  scrollbar-color: #d5d7da #fff;
+  /* thumb track */
+
+  /* ================= CHROME / EDGE / SAFARI ================= */
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply bg-gray-200 rounded-lg;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-brand rounded-lg;
+  }
+
+  /* Hover ONLY works in WebKit browsers */
+  &::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand/80;
+  }
+}
+
+@utility custom-scrollbar-cart {
+  /* ================= FIREFOX ================= */
+  scrollbar-width: 16px;
+  scrollbar-color: #e9eaeb transparent; /* thumb track */
+
+  /* ================= CHROME / EDGE / SAFARI ================= */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply bg-gray-200 rounded-lg;
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-brand rounded-lg;
+  }
+
+  /* Hover ONLY works in WebKit browsers */
+  &::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand/80;
+  }
+}
+
+/* ========================================
+   🧠 COMPONENT CLASSES
+======================================== */
+@utility card-padding {
+  @apply p-2.5 sm:p-3 md:p-4;
+}
+
+@utility cart-card-padding {
+  @apply p-2.5 sm:p-3;
+}
+
+/* Cart Drawer Animation & Sidebar Active */
+@layer utilities {
+  .border {
+    border-width: 0.5px;
+    border-style: solid;
+  }
+
+  .border-t {
+    border-top-width: 0.5px;
+    border-style: solid;
+  }
+
+  .border-b {
+    border-bottom-width: 0.5px;
+    border-style: solid;
+  }
+
+  .border-l {
+    border-left-width: 0.5px;
+    border-style: solid;
+  }
+
+  .border-r {
+    border-right-width: 0.5px;
+    border-style: solid;
+  }
+
+  #sidebar_mobile_main_01 {
+    transition: left 0.4s ease-in-out;
+  }
+
+  @media (max-width: 1280px) {
+    #sidebar_mobile_main_01 {
+      left: -300px;
+    }
+  }
+
+  .sidebar-menu-item-active {
+    background-color: rgba(14, 118, 115, 0.1);
+  }
+
+  .sidebar-menu-item-active > a,
+  .sidebar-menu-item-active > a svg path {
+    color: var(--Brand600Base);
+  }
+
+  .sidebar-menu-item-active > a:hover {
+    background-color: transparent;
+  }
+
+  @keyframes cart-bounce {
+    0%,
+    100% {
+      transform: translateY(-50%);
+    }
+
+    50% {
+      transform: translateY(calc(-50% - 8px));
+    }
+  }
+
+  .cart-bounce {
+    animation: cart-bounce 0.3s ease-in-out;
+  }
+}
+
+/* Cart Drawer Animation */
+@layer utilities {
+  @keyframes cart-bounce {
+    0%,
+    100% {
+      transform: translateY(-50%);
+    }
+
+    50% {
+      transform: translateY(calc(-50% - 8px));
+    }
+  }
+
+  .cart-bounce {
+    animation: cart-bounce 0.3s ease-in-out;
+  }
+}
+
+/* For color picker in account-> wishlist tag create */
+@layer utilities {
+  input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+/* ========================
+  Only for iOS Safari to prevent zooming on input focus
+  ======================== */
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+}
+
+/* ===================================== 
+  Typography for SEO dangerouslySetInnerHTML 
+===================================== */
+@layer components {
+  .prose-custom {
+    @apply text-sm text-slate-800 leading-relaxed font-medium;
+  }
+
+  .prose-custom h1 {
+    @apply text-2xl md:text-4xl font-extrabold text-slate-800 my-2 md:my-4 tracking-tight;
+  }
+
+  .prose-custom h2 {
+    @apply text-xl md:text-3xl font-bold text-slate-800 my-2 md:my-4 tracking-tight;
+  }
+
+  .prose-custom h3 {
+    @apply text-lg md:text-xl font-semibold text-slate-800 my-1 md:my-2 tracking-tight;
+  }
+
+  .prose-custom h4 {
+    @apply text-base md:text-lg font-semibold text-slate-800 my-1 md:my-1.5 tracking-tight;
+  }
+
+  .prose-custom h5 {
+    @apply text-sm md:text-base font-medium text-slate-800 my-1 md:my-1 uppercase tracking-wider;
+  }
+
+  .prose-custom p {
+    @apply my-4 md:my-5 text-slate-600;
+  }
+
+  .prose-custom ul {
+    @apply list-disc list-outside mb-6 ml-6 space-y-0.5 text-slate-600;
+  }
+
+  .prose-custom ol {
+    @apply list-disc list-outside mb-6 ml-6 space-y-0.5 text-slate-600;
+  }
+
+  .prose-custom li {
+    @apply pl-1;
+  }
+
+  .prose-custom a {
+    @apply text-brand;
+  }
+
+  .prose-custom td {
+    @apply py-1.5;
+  }
+
+  .prose-custom div:empty,
+  .prose-custom p:empty {
+    @apply h-2 md:h-4;
+  }
+}
+
+/* HEADER STYLES */
+
+.collapsible {
+  transition: all 0.3s ease;
+  overflow: hidden;
+  max-height: 80px;
+  /* enough for content */
+}
+
+.collapsible.hide {
+  max-height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  opacity: 1;
+}
+
+@layer utilities {
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee {
+    animation: marquee 100s linear infinite;
+    will-change: transform;
+  }
+
+  @media (min-width: 992px) {
+    .marquee:hover {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes modal-slide-up {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .modal-slide-up {
+    animation: modal-slide-up 0.3s ease-out;
+  }
+}
